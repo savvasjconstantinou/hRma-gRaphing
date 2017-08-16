@@ -1,0 +1,11 @@
+library(ggplot2)
+library(reshape2)
+
+meltcurve<-read.csv("C:/Users/Savvas Constantinou/Documents/PhD/Dissertation/Research + presentation/B brach CRISPR project/scn4aa/HRMA/meltcurves(20170810_scn4aa_from_7_24_17).csv", header=T, stringsAsFactors =F)
+head(meltcurve)
+
+meltcurve_melted<-melt(meltcurve, id.vars="Temperature", variable.name="Sample", value.name="Derivative")
+
+p <- ggplot(meltcurve_melted, aes(x=Temperature,y=Derivative,color=Sample))
+p + geom_line() +
+  ggtitle("HRMA from 15 dpf embryo; clutch 7-24-17")
